@@ -114,3 +114,70 @@ function gameObject() {
         },
     };
 }
+function numPointsScored(playerName) {
+  const game = gameObject();
+
+  for (const team in game) {
+    if (game[team].players[playerName]) {
+      return game[team].players[playerName].points;
+    }
+  }
+}
+
+function shoeSize(playerName) {
+  const game = gameObject();
+
+  for (const team in game) {
+    if (game[team].players[playerName]) {
+      return game[team].players[playerName].shoe;
+    }
+  }
+}
+
+
+function teamColors(teamNames) {
+  const game = gameObject();
+  for(const team in game){
+    if(game[team].teamName === teamNames){
+  return game[team].colors;
+
+    }
+  }
+}
+
+function teamNames() {
+  const game = gameObject();
+  return [game.home.teamName,
+    game.away.teamName
+  ];
+}
+
+function playerNumbers(teamName) {
+  const game = gameObject();
+for (const team in game){
+    if(game[team].teamName === teamName){
+        const players = game[team].players
+  return Object.values(players).map(player => player.number);
+
+    }
+}
+
+}
+function bigShoeRebounds() {
+  const game = gameObject();
+  let biggestShoe = 0;
+  let rebounds = 0;
+
+  for (const team in game) {
+    for (const player in game[team].players) {
+      const stats = game[team].players[player];
+
+      if (stats.shoe > biggestShoe) {
+        biggestShoe = stats.shoe;
+        rebounds = stats.rebounds;
+      }
+    }
+  }
+
+  return rebounds;
+}
